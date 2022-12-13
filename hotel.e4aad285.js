@@ -1,0 +1,2 @@
+$(".slider.triple-room__slider").slick({mobileFirst:!0,centerMode:!0,centerPadding:"0px",slidesToShow:2,adaptiveHeight:!0,prevArrow:'<button class="slick-prev slick-arrow" aria-label="Prev" type="button" style="display: block;"><img src="./images/arrow-r.svg" class="prev"/></button>',responsive:[{breakpoint:768,settings:{arrows:!0}},{breakpoint:414,settings:{arrows:!0,centerMode:!0,centerPadding:"0px",slidesToShow:2}}]});
+//# sourceMappingURL=hotel.e4aad285.js.map
