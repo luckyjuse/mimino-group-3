@@ -157,7 +157,7 @@
 }
 
 .slider_card {
-  padding: 8px 8px;
+  padding: 0px 8px;
   z-index: 99;
   position: absolute;
   overflow: hidden;
@@ -165,14 +165,10 @@
   box-shadow: 2px 2px 40px 2px rgba(0, 0, 0, 0.25);
 
   @include tablet {
-    padding: 20px 20px;
-    // padding-right: 40px;
+    padding: 0px 20px;
   }
 }
 
-// .slider_card img {
-//   width: 274px;
-// }
 /* Слайдер */
 .slick-slider {
   min-width: 0;
