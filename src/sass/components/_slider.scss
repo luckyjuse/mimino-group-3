@@ -23,6 +23,30 @@
   align-items: flex-start;
 }
 
+.slick-arrow {
+  z-index: 100;
+}
+
+.slick-arrow.slick-prev:before {
+  content: '';
+}
+
+.slick-arrow.slick-next:before {
+  content: '';
+}
+
+.slick-arrow {
+  z-index: 100;
+}
+
+.slick-arrow.slick-prev:before {
+  content: '';
+}
+
+.slick-arrow.slick-next:before {
+  content: '';
+}
+
 //! INVERT
 
 /* Слайдер на дві картинки */
@@ -55,9 +79,6 @@
     background: url('../images/arrow-r-y.svg') 0 0 / 100% no-repeat;
   }
 }
-.slider-2pictures-invert .slick-arrow.slick-prev:before {
-  content: '';
-}
 
 .slider-2pictures-invert .slick-arrow.slick-next {
   right: 0;
@@ -65,10 +86,6 @@
   &:hover {
     background: url('../images/arrow-l-y.svg') 0 0 / 100% no-repeat;
   }
-}
-
-.slider-2pictures-invert .slick-arrow.slick-next:before {
-  content: '';
 }
 
 //! 2PICTURES
@@ -107,9 +124,6 @@
     background: url('../images/arrow-r-y.svg') 0 0 / 100% no-repeat;
   }
 }
-.slider-2pictures .slick-arrow.slick-prev:before {
-  content: '';
-}
 
 .slider-2pictures .slick-arrow.slick-next {
   left: 94px;
@@ -136,6 +150,16 @@
 //! ABOUT
 
 .slider-about .slick-slide {
+}
+
+.slider-about .slick-slide img {
+  max-width: 245px;
+  @include tablet {
+    max-width: 194px;
+  }
+  @include desktop {
+    max-width: 245px;
+  }
 }
 
 .about-res__slider .slick-slide img {
@@ -173,10 +197,6 @@
   background: url('../images/slider/svg-about-R.svg') 0 0 / 100% no-repeat;
   transform: rotate(180deg) translateY(7px);
 }
-.slider-about .slick-arrow.slick-prev:before {
-  content: '';
-}
-
 .slider-about .slick-arrow.slick-disabled {
   opacity: 0.2;
 }
@@ -186,6 +206,45 @@
   background: url('../images/slider/svg-about-R.svg') 0 0 / 100% no-repeat;
 }
 
-.slider-about .slick-arrow.slick-next:before {
-  content: '';
+//! single-item
+
+.single-item .slick-arrow {
+  width: 40px;
+  height: 40px;
+}
+
+.single-item .slick-next {
+  position: absolute;
+  right: 15;
+
+  @include tablet {
+    right: 47px;
+  }
+
+  @include desktop {
+    right: 85px;
+  }
+}
+
+.single-item .slick-prev {
+  position: absolute;
+  left: 15;
+
+  @include tablet {
+    left: 47px;
+  }
+
+  @include desktop {
+    left: 85px;
+  }
+}
+
+.single-item .slick-arrow.slick-prev {
+  background: url(../images/rooms/luxe/hero/room_arrow-left.svg) 0 0 / 100%
+    no-repeat;
+}
+
+.single-item .slick-arrow.slick-next {
+  background: url(../images/rooms/luxe/hero/room_arrow-right.svg) 0 0 / 100%
+    no-repeat;
 }
