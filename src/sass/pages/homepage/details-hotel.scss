@@ -60,7 +60,7 @@
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65)
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)
         ),
         url(../images/homepage/details-hotel/hero-image/hero-desktop-2x-min.jpg);
     }
@@ -170,38 +170,103 @@
   }
 }
 
-.slick-prev:hover,
-.slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus{
-  color: #F3C653 !important;
-  cursor: pointer;
-}
-.slick-slider{
-  margin-left: 40px;
-}
+// .slick-prev:hover,
+// .slick-prev:focus,
+// .slick-next:hover,
+// .slick-next:focus{
+//   color: #F3C653 !important;
+//   cursor: pointer;
+// }
+// .slick-slider{
+//   margin-left: 40px;
+// }
 
-.slick-arrow {
- display: none;
-position: absolute;
+// .slick-arrow {   
+//   position: absolute;
+//   top: 50%;
+//   margin: -20px 0px 0px 0px;
+//   z-index: 10;
+//   font-size: 0;
+//   width: 30px;
+//   height: 30px;
+// }
+
+// .slick-prev:before, .slick-next:before{
+
+// }
+
+// .slick-prev,
+// .slick-next {
+//   color: transparent !important;
+// }
+
+// .slick-prev {
+//   background: transparent;
+// }
+
+// .slick-next {
+//   background: transparent;
+// }
+
+.slick-arrow{
   width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    position: absolute;
+    bottom: -25px;
+
 }
 
-.slick-prev,
-.slick-next {
-  color: transparent !important;
+.slick-prev, .slick-next{
+  font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+
 }
 
-.slick-prev {
-  background: transparent;
+.slick-prev{
+
 }
 
-.slick-next {
-  background: transparent;
+.slick-next{
+
+}
+
+.slick-prev:before, .slick-next:before {
+  font-family: 'Montserrat' !important;
+  background: no-repeat !important;
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev:before{
+  content: '';
+  background-image: url(../images/homepage/details-hotel/svg-cil_arrow/cil_arrow-left.svg);
+}
+
+.slick-next:before{
+  content: '';
+  background-image: url(../images/homepage/details-hotel/svg-cil_arrow/cil_arrow-right.svg);
 }
 
 .multiple-items {
