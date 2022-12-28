@@ -1,21 +1,24 @@
 // SLICK JS для слайдера на сторінці Готель -- доданий С. Руденком
-$('.slider-2pictures').slick({
-  mobileFirst: true,
-  // centerMode: true,
-  // centerPadding: '0px',
+
+$('.triple-room__slider').slick({
+  arrows: true,
   slidesToShow: 2,
-  adaptiveHeight: true,
-  // prevArrow: '<button type="button" class="slick-prev"><img src="./images/arrow-r.svg"/></button>',
-       // nextArrow: "<img src='https://svgshare.com/i/6Gf.svg' class='next' alt='2'>",
+  prevArrow: $('.triple-prev'),
+  nextArrow: $('.triple-next'),
 });
 
-$('.slider-2pictures-invert').slick({
-  mobileFirst: true,
-  // centerMode: true,
-  // centerPadding: '5px',
+$('.lux-room__slider').slick({
+  arrows: true,
   slidesToShow: 2,
-  adaptiveHeight: true,
-  // prevArrow:
+  prevArrow: $('.lux-prev'),
+  nextArrow: $('.lux-next'),
+});
+
+$('.double-room__slider').slick({
+  arrows: true,
+  slidesToShow: 2,
+  prevArrow: $('.double-prev'),
+  nextArrow: $('.double-next'),
 });
 
 $('.slider-about').slick({

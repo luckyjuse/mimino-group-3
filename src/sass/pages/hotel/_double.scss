@@ -1,23 +1,17 @@
 .double-room {
   &__container {
-    padding-top: 32px;
     padding-bottom: 32px;
-    position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 32px;
+
     @include tablet {
       flex-wrap: wrap;
       flex-direction: row;
-      gap: 0;
-      padding-top: 66px;
-      padding-bottom: 104px;
+      gap: normal;
+      padding-bottom: 40px;
       overflow: visible;
-    }
-    @include desktop {
-      padding-top: 74px;
-      padding-bottom: 112px;
     }
   }
 
@@ -27,12 +21,17 @@
       width: 50%;
     }
     &--text {
+      //ліво
+      padding-top: 32px;
+
       @include tablet {
-        padding-bottom: 174px;
+        padding-top: 64px;
+        padding-right: 40px;
       }
+
       @include desktop {
-        padding-right: 56px;
-        padding-bottom: 188px;
+        padding-top: 72px;
+        padding-right: 46px;
       }
     }
   }
@@ -41,7 +40,7 @@
     margin-bottom: 8px;
     font-family: 'Times New Roman', serif;
     @include font(null, 20px, 23px, null);
-    color: #b4b4b4;
+    color: var(--secondary-text-color);
 
     @include tablet {
       margin-bottom: 4px;
@@ -53,12 +52,16 @@
     margin-bottom: 32px;
     font-family: 'Film P3 Bold', sans-serif;
     @include font(700, 40px, 43px, 0.3em);
-
+    text-transform: uppercase;
     color: #494848;
 
     @include tablet {
       margin-bottom: 62px;
       @include font(null, 64px, 69px, null);
+    }
+
+    @include desktop {
+      margin-bottom: 72px;
     }
   }
 
@@ -66,9 +69,8 @@
     margin-bottom: 12px;
     font-family: 'Times New Roman', serif;
     @include font(null, 24px, 28px, 0.05em);
-    color: #000000;
+    color: var(--primary-text-color-2);
     text-transform: uppercase;
-    text-align: left;
 
     @include tablet {
       margin-bottom: 16px;
@@ -82,9 +84,9 @@
   }
 
   &__description {
-    max-width: 242px;
+    max-width: 258px;
     @include font(700, 12px, 15px, 0.02em);
-    color: #7a7a7a;
+    color: var(--text-room-color);
 
     @include tablet {
       max-width: 400px;
@@ -93,46 +95,40 @@
   }
 
   &__thumb {
+    margin-right: auto;
     width: 244px;
     height: 322px;
-    margin-left: auto;
+    background-color: #dadada;
     overflow: hidden;
     box-shadow: 2px 2px 60px 2px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
 
     @include tablet {
-      position: absolute;
-      z-index: 2;
-      top: -32px;
-      right: 112px;
+      // margin-right: 0;
+      // margin-left: auto;
+      transform: translateY(-32px);
       width: 400px;
       height: 524px;
       box-shadow: 5px 5px 70px 17px rgba(0, 0, 0, 0.25);
     }
     @include desktop {
-      right: 180px;
       width: 460px;
       height: 574px;
     }
   }
 
   &__button-container {
-    display: flex;
+    @extend %full-flex-centered;
     flex-direction: column;
-    justify-content: center;
     gap: 16px;
-    align-items: center;
-    padding-top: 40px;
 
     @include tablet {
-      align-items: end;
+      align-items: flex-end;//модифікатор
+      padding-bottom: 64px;
     }
-  }
-}
 
-.double-room__slider {
-  transform: translateX(-130px);
-  @include tablet {
-    transform: translateX(-14px);
+    @include desktop {
+      padding-bottom: 72px;
+    }
   }
 }
