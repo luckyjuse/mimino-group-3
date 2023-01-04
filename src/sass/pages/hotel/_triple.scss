@@ -1,149 +1,62 @@
 .triple-room {
   &__container {
-    padding-bottom: 32px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    background-color: var(--secondary-background-color); //****
+    @extend %room__container;
+    background-color: var(--secondary-background-color);
     @include tablet {
-      flex-wrap: wrap;
-      flex-direction: row-reverse; //****
-      gap: normal;
-      padding-bottom: 40px;
-      overflow: visible;
+      flex-direction: row-reverse;
     }
   }
 
   &__wrapper {
-    width: 100%;
-    @include tablet {
-      width: 50%;
-    }
+    @extend %room__wrapper;
     &--text {
-      //право
-      padding-top: 32px;
+      @extend %room__wrapper--text;
+      align-self: flex-end;
       text-align: right;
 
       @include tablet {
-        // margin-right: auto;
-        padding-top: 64px;
+        align-self: flex-start;
         padding-left: 45px;
-        padding-right: 17px;
-      }
-
-      @include desktop {
-        padding-top: 72px;
-        padding-right: 56px;
       }
     }
   }
 
   &__pretitle {
-    margin-bottom: 8px;
-    font-family: 'Times New Roman', serif;
-    @include font(null, 20px, 23px, null);
-    color: var(--secondary-text-color);
-
-    @include tablet {
-      margin-bottom: 4px;
-      @include font(null, 32px, 37px, null);
-    }
+    @extend %room__pretitle;
   }
 
   &__logo {
-    margin-bottom: 32px;
-    font-family: 'Film P3 Bold', sans-serif;
-    @include font(700, 40px, 43px, 0.3em);
-    text-transform: uppercase;
-    color: #494848;
-    transform: translateX(0.3em); //модифікатор
-
-    @include tablet {
-      margin-bottom: 62px;
-      @include font(null, 64px, 69px, null);
-    }
-
-    @include desktop {
-      margin-bottom: 72px;
-    }
+    @extend %room__logo;
+    transform: translateX(0.3em);
   }
 
   &__title-container {
     display: inline-block;
-    // margin-right: auto;
-    // margin-left: auto;
     text-align: left;
-    // @include tablet {
-      // margin-left: 0;
-      // margin-right: auto;
-    // }
   }
 
   &__title {
-    margin-bottom: 12px;
-    font-family: 'Times New Roman', serif;
-    @include font(null, 24px, 28px, 0.05em);
-    color: var(--primary-text-color-2);
-    text-transform: uppercase;
-
-    @include tablet {
-      margin-bottom: 16px;
-      @include font(null, 30px, 34px, null);
-    }
-
-    @include desktop {
-      margin-bottom: 24px;
-      @include font(null, 36px, 41px, null);
-    }
+    @extend %room__title;
   }
 
   &__description {
-    max-width: 258px;
-    @include font(700, 12px, 15px, 0.02em);
-    color: var(--text-room-color);
-
-    @include tablet {
-      max-width: 400px;
-      @include font(null, 16px, 20px, null);
-    }
+    @extend %room__description;
   }
 
   &__thumb {
+    @extend %room__thumb;
     margin-right: auto;
-    width: 244px;
-    height: 322px;
-    background-color: #dadada;
-    overflow: hidden;
-    box-shadow: 2px 2px 60px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 2px;
 
-    @include tablet {//марджини-иодифікатори
+    @include tablet {
       margin-right: 0;
       margin-left: auto;
-      transform: translateY(-32px);
-      width: 400px;
-      height: 524px;
-      box-shadow: 5px 5px 70px 17px rgba(0, 0, 0, 0.25);
-    }
-    @include desktop {
-      width: 460px;
-      height: 574px;
     }
   }
 
   &__button-container {
-    @extend %full-flex-centered;
-    flex-direction: column;
-    gap: 16px;
-
+    @extend %room__button-container;
     @include tablet {
-      align-items: flex-start;//модифікатор
-      padding-bottom: 64px;
-    }
-
-    @include desktop {
-      padding-bottom: 72px;
+      align-items: flex-start;
     }
   }
 }

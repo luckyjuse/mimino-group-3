@@ -1,12 +1,13 @@
-.slider-card {
-  //змінити у всіх файлах
-  padding: 0 12px;
-  // border-radius: 2px; //змінити у всіх файлах
+// .slider-card {
+//   //змінити у всіх файлах
+//   padding: 0 12px;
+//   // border-radius: 2px; //змінити у всіх файлах
 
-  @include tablet {
-    padding: 0px 20px;
-  }
-}
+//   @include tablet {
+//     padding: 0px 20px;
+//   }
+// }
+
 // ЗАГАЛЬНІ ВЛАСТИВОСТІ СЛАЙДЕРУ
 /* Слайдер */
 .slick-slider {
@@ -28,131 +29,162 @@
 
 //*****СЛАЙДЕР НА ДВІ КАРТИНКИ*******
 
-$slider-padding-mobile: 8px;
-$slider-padding-tablet: 20px;
-$slider-padding-desktop: 20px;
+// $class - специфікатор класу слайдера для сторінки
+// $slider-padding-mobile - падінг між слайдами для мобільної версії
+// $slider-padding-tablet - падінг між слайдами для версії tablet
+// $slider-padding-desktop - падінг між слайдами для версії desktop
+// $image-width-mobile - ширина картинки слайду для мобільної версії
+// $image-width-tablet - ширина картинки слайду для версії tablet
+// $image-width-desktop - ширина картинки слайду для версії desktop
+// $slider-shift - зміщення слайдеру по осі Х
 
-.slider-2pictures .slider-card {
-  padding: 0 8px;
+@mixin slider-2pictures(
+  $class,
+  $slider-padding-mobile,
+  $slider-padding-tablet,
+  $slider-padding-desktop,
+  $image-width-mobile,
+  $image-width-tablet,
+  $image-width-desktop,
+  $slider-shift
+) {
+  .slider-#{$class} .slider-card {
+    padding: 0 $slider-padding-mobile;
 
-  @include tablet {
-    padding: 0px 20px;
+    @include tablet {
+      padding: 0px $slider-padding-tablet;
+    }
+
+    @include desktop {
+      padding: 0px $slider-padding-desktop;
+    }
   }
-}
-.slider-2pictures .slider-card img {
-  max-width: 194px;
-  @include desktop {
-    max-width: 254px;
-  }
-}
-
-.slider-wrapper {
-  overflow: hidden;
-  width: calc((194px + #{$slider-padding-mobile} * 2) * 2);
-  padding: ($slider-padding-mobile * 2) 0 20px;
-  margin-top: ($slider-padding-mobile * -2);
-  @include tablet {
-    width: calc((194px + #{$slider-padding-tablet} * 2) * 2);
-    padding: ($slider-padding-tablet * 2) 0 32px;
-    margin-top: ($slider-padding-tablet * -2);
-  }
-  @include desktop {
-    padding: ($slider-padding-desktop * 2) 0;
-    width: calc((254px + #{$slider-padding-desktop} * 2) * 2);
-  }
-}
-.slider-wrapper--right {
-  transform: translateX(calc(115px - #{$slider-padding-mobile}));
-
-  @include tablet {
-    transform: translateX(0);
-  }
-
-  @include desktop {
-    margin-left: ($slider-padding-desktop * -1);
-  }
-}
-
-.slider-wrapper--left {
-  transform: translateX(calc(-1*(115px + #{$slider-padding-mobile})));
-
-  @include tablet {
-    transform: translateX(0);
+  .slider-#{$class} .slider-card img {
+    max-width: $image-width-mobile;
+    @include tablet {
+      max-width: $image-width-tablet;
+    }
+    @include desktop {
+      max-width: $image-width-desktop;
+    }
   }
 
-  @include desktop {
-    // margin-left: ($slider-padding-desktop * -1);
-    margin-left: calc((100% - (254px + #{$slider-padding-desktop}) * 2) - #{$slider-padding-desktop});
+  .slider-#{$class}-wrapper {
+    overflow: hidden;
+    width: calc((#{$image-width-mobile} + #{$slider-padding-mobile} * 2) * 2);
+    padding: ($slider-padding-mobile * 2) 0 40px;
+    margin-top: ($slider-padding-mobile * -2);
+    @include tablet {
+      width: calc((#{$image-width-tablet} + #{$slider-padding-tablet} * 2) * 2);
+      padding: ($slider-padding-tablet * 2) 0 64px;
+      margin-top: ($slider-padding-tablet * -2);
+    }
+    @include desktop {
+      padding: ($slider-padding-desktop * 2) 0 72px;
+      width: calc(
+        (#{$image-width-desktop} + #{$slider-padding-desktop} * 2) * 2
+      );
+    }
+  }
+
+  .slider-wrapper--right {
+    transform: translateX(calc(#{$slider-shift} - #{$slider-padding-mobile}));
+
+    @include tablet {
+      transform: translateX(0);
+    }
+
+    @include desktop {
+      margin-left: ($slider-padding-desktop * -1);
+    }
+  }
+
+  .slider-wrapper--left {
+    transform: translateX(
+      calc(-1 * (#{$slider-shift} + #{$slider-padding-mobile}))
+    );
+
+    @include tablet {
+      transform: translateX(0);
+    }
+
+    @include desktop {
+      margin-left: calc(
+        (100% - (254px + #{$slider-padding-desktop}) * 2) - #{$slider-padding-desktop}
+      );
+    }
+  }
+
+  .slider-thumb {
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .slick-slide .slider-shadow {
+    box-shadow: none;
+    overflow: hidden;
+    border-radius: 2px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .slick-slide.slick-active .slider-shadow {
+    box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.12);
+    @include tablet {
+      box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .slider-#{$class} .slick-list {
+    overflow: visible;
+  }
+
+  .slider-arrows {
+    display: flex;
+    gap: 32px;
+    position: absolute;
+    top: 100%;
+  }
+
+  .slider-arrows--right {
+    left: 100%;
+    transform: translate(-100%, -50%);
+    @include tablet {
+      left: 0;
+      transform: translate($slider-padding-tablet, -100%);
+    }
+    @include desktop {
+      transform: translate(0, -100%);
+    }
+  }
+
+  .slider-arrows--left {
+    transform: translate(0, -50%);
+    @include tablet {
+      left: 100%;
+      transform: translate(calc(-100% - #{$slider-padding-tablet}), -100%);
+    }
+    @include desktop {
+      transform: translate(-100%, -100%);
+    }
+  }
+
+  .slider-arrows .slick-arrow {
+    padding: 0;
+    @extend %full-flex-centered;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    background-color: transparent;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  .arrow-image {
+    fill: currentColor;
   }
 }
-
-.slider-thumb {
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.slick-slide .slider-shadow {
-  box-shadow: none;
-  overflow: hidden;
-  border-radius: 2px;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.slick-slide.slick-active .slider-shadow {
-  box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.12);
-  @include tablet {
-    box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.25);
-  }
-}
-
-.slider-2pictures .slick-list {
-  overflow: visible;
-}
-
-.slider-arrows {
-  display: flex;
-  gap: 32px;
-}
-
-.slider-arrows--right {
-  justify-content: flex-end;
-  @include tablet {
-    justify-content: flex-start;
-    transform: translateX($slider-padding-tablet);
-  }
-  @include desktop {
-    transform: translateX(0);
-  }
-}
-
-.slider-arrows--left {
-  justify-content: flex-start;
-  @include tablet {
-    justify-content: flex-end;
-    transform: translateX($slider-padding-tablet * -1);
-  }
-  @include desktop {
-    transform: translateX(0);
-  }
-}
-
-.slider-arrows .slick-arrow {
-  padding: 0;
-  @extend %full-flex-centered;
-  border: none;
-  cursor: pointer;
-  color: var(--black);
-  background-color: transparent;
-
-  &:hover {
-    color: var(--accent-color);
-  }
-}
-
-.arrow-image {
-  fill: currentColor;
-}
-
 //! ABOUT
 
 .slider-about .slick-slide img {
