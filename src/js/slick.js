@@ -21,12 +21,18 @@ $('.double-room__slider').slick({
   nextArrow: $('.double-next'),
 });
 
-$('.slider-about').slick({
-  mobileFirst: true,
-  // centerMode: true,
-  // centerPadding: '5px',
+$('.about-kitchen__slider').slick({
+  arrows: true,
   slidesToShow: 2,
-  // adaptiveHeight: true,
-  // infinite: false,
-  variableWidth: true,
+  prevArrow: $('.about-prev'),
+  nextArrow: $('.about-next'),
 });
+// $('.slider-about').slick({
+//   mobileFirst: true,
+//   // centerMode: true,
+//   // centerPadding: '5px',
+//   slidesToShow: 2,
+//   // adaptiveHeight: true,
+//   // infinite: false,
+//   variableWidth: true,
+// });
