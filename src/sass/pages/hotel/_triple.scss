@@ -9,6 +9,8 @@
 
   &__wrapper {
     @extend %room__wrapper;
+    display: flex;
+    flex-direction: column;
     &--text {
       @extend %room__wrapper--text;
       align-self: flex-end;

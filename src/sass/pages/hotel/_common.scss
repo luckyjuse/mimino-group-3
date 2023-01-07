@@ -4,7 +4,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 32px;
 
     @include tablet {
       flex-wrap: wrap;
@@ -16,12 +15,12 @@
   }
 
   &__wrapper {
-    display: flex;
-    flex-direction: column;
     width: 100%;
+    padding-bottom: 32px;
     position: relative;
     @include tablet {
       width: 50%;
+      padding-bottom: 0;
     }
     &--text {
       padding-top: 32px;
@@ -116,6 +115,7 @@
 
   &__button-container {
     @extend %full-flex-centered;
+    padding-bottom: 0;
     flex-direction: column;
     gap: 16px;
 

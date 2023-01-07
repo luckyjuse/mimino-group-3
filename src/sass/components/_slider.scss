@@ -30,13 +30,82 @@
 //*****СЛАЙДЕР НА ДВІ КАРТИНКИ*******
 
 // $class - специфікатор класу слайдера для сторінки
+// $right-direction
 // $slider-padding-mobile - падінг між слайдами для мобільної версії
 // $slider-padding-tablet - падінг між слайдами для версії tablet
 // $slider-padding-desktop - падінг між слайдами для версії desktop
 // $image-width-mobile - ширина картинки слайду для мобільної версії
 // $image-width-tablet - ширина картинки слайду для версії tablet
 // $image-width-desktop - ширина картинки слайду для версії desktop
-// $slider-shift - зміщення слайдеру по осі Х
+// $slider-shift - зміщення слайдеру по осі Х (без падінгу)
+
+.slider-thumb {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.slick-slide .slider-shadow {
+  box-shadow: none;
+  overflow: hidden;
+  border-radius: 2px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.slick-slide.slick-active .slider-shadow {
+  box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.12);
+  @include tablet {
+    box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.slider-arrows {
+  display: flex;
+  gap: 32px;
+  position: absolute;
+  top: 100%;
+}
+.slider-arrows .slick-arrow {
+  padding: 0;
+  @extend %full-flex-centered;
+  border: none;
+  cursor: pointer;
+  color: var(--black);
+  background-color: transparent;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+}
+
+.arrow-image {
+  fill: currentColor;
+}
+
+@mixin arrow-position($right-direction, $inverted, $padding-shift) {
+  $arrow-shift: 0;
+  $index: -1;
+
+  @if $right-direction {
+    $arrow-shift: -100%;
+    $padding-shift: $padding-shift * $index;
+  }
+
+  transform: translate($arrow-shift, calc(-100% - 20px));
+
+  @if $inverted {
+    $arrow-shift: ($arrow-shift + 100%) * $index;
+    $padding-shift: $padding-shift * -1;
+  }
+
+  @include tablet {
+    transform: translate(calc(#{$arrow-shift} + #{$padding-shift}), -100%);
+  }
+
+  @include desktop {
+    transform: translate($arrow-shift, -100%);
+  }
+}
+
 
 @mixin slider-2pictures(
   $class,
@@ -87,7 +156,7 @@
     }
   }
 
-  .slider-wrapper--right {
+  .slider-#{$class}--right {
     transform: translateX(calc(#{$slider-shift} - #{$slider-padding-mobile}));
 
     @include tablet {
@@ -99,7 +168,7 @@
     }
   }
 
-  .slider-wrapper--left {
+  .slider-#{$class}--left {
     transform: translateX(
       calc(-1 * (#{$slider-shift} + #{$slider-padding-mobile}))
     );
@@ -114,75 +183,51 @@
     }
   }
 
-  .slider-thumb {
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .slick-slide .slider-shadow {
-    box-shadow: none;
-    overflow: hidden;
-    border-radius: 2px;
-    transition: box-shadow 0.3s ease-in-out;
-  }
-
-  .slick-slide.slick-active .slider-shadow {
-    box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.12);
-    @include tablet {
-      box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.25);
-    }
-  }
-
   .slider-#{$class} .slick-list {
     overflow: visible;
   }
 
-  .slider-arrows {
-    display: flex;
-    gap: 32px;
-    position: absolute;
-    top: 100%;
+  .slider-arrows__#{$class}--left {
+    left: 0;
+    @include arrow-position(false, false, $slider-padding-tablet);
   }
 
-  .slider-arrows--right {
-    left: 100%;
-    transform: translate(-100%, -50%);
-    @include tablet {
-      left: 0;
-      transform: translate($slider-padding-tablet, -100%);
-    }
-    @include desktop {
-      transform: translate(0, -100%);
-    }
-  }
-
-  .slider-arrows--left {
-    transform: translate(0, -50%);
+  .slider-arrows__#{$class}--left.inverted {
     @include tablet {
       left: 100%;
-      transform: translate(calc(-100% - #{$slider-padding-tablet}), -100%);
+      // right: 0;
     }
-    @include desktop {
-      transform: translate(-100%, -100%);
-    }
+    @include arrow-position(false, true, $slider-padding-tablet);
   }
 
-  .slider-arrows .slick-arrow {
-    padding: 0;
-    @extend %full-flex-centered;
-    border: none;
-    cursor: pointer;
-    color: var(--black);
-    background-color: transparent;
+  .slider-arrows__#{$class}--right {
+    left: 100%;
+    @include arrow-position(true, false, $slider-padding-tablet);
+  }
 
-    &:hover {
-      color: var(--accent-color);
+  .slider-arrows__#{$class}--right.inverted {
+    @include tablet {
+      left: 0;
     }
+    @include arrow-position(true, true, $slider-padding-tablet);
   }
 
-  .arrow-image {
-    fill: currentColor;
-  }
+  // .slider-arrows--left {
+  //   @if $inverted {
+  //     left: 100%;
+  //   } @else {
+  //     left: 0;
+  //   }
+  //   transform: translate(0, calc(-100% - 20px));
+  //   @include tablet {
+  //     left: 100%;
+  //     transform: translate(calc(-100% - #{$slider-padding-tablet}), -100%);
+  //   }
+  //   @include desktop {
+  //     transform: translate(-100%, -100%);
+  //   }
+  // }
+
 }
 //! ABOUT
 
