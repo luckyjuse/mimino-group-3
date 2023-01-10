@@ -29,8 +29,13 @@
 
 //*****СЛАЙДЕР НА ДВІ КАРТИНКИ*******
 
+// .slider-thumb - клас-тумба для картинки слайдеру
+// .slider-shadow - клас для тіні
+// .slider-arrows - клас для власних стрілок слайдера
 // $class - специфікатор класу слайдера для сторінки
-// $right-direction
+// $right-direction - булева змінна (true - якщо кнопки праворуч)
+// .inverted - клас для кнопок, які змінюють розміщення у tablet та desktop
+// $inverted - булева змінна (true - якщо кнопки змінюють напрямок)
 // $slider-padding-mobile - падінг між слайдами для мобільної версії
 // $slider-padding-tablet - падінг між слайдами для версії tablet
 // $slider-padding-desktop - падінг між слайдами для версії desktop
@@ -52,7 +57,7 @@
 }
 
 .slick-slide.slick-active .slider-shadow {
-  box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.12);
   @include tablet {
     box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.25);
   }
@@ -81,31 +86,30 @@
   fill: currentColor;
 }
 
-@mixin arrow-position($right-direction, $inverted, $padding-shift) {
-  $arrow-shift: 0;
-  $index: -1;
+@mixin arrow-position($right-direction, $inverted, $slider-padding) {
+  $arrow-shift: 0; // позиція зміщення кнопок
+  $direction-index: -1; //індекс, який змінює напрямок зміщення кнопок
 
   @if $right-direction {
     $arrow-shift: -100%;
-    $padding-shift: $padding-shift * $index;
+    $slider-padding: $slider-padding * $direction-index;
   }
 
   transform: translate($arrow-shift, calc(-100% - 20px));
 
   @if $inverted {
-    $arrow-shift: ($arrow-shift + 100%) * $index;
-    $padding-shift: $padding-shift * -1;
+    $arrow-shift: ($arrow-shift + 100%) * $direction-index;
+    $slider-padding: $slider-padding * $direction-index;
   }
 
   @include tablet {
-    transform: translate(calc(#{$arrow-shift} + #{$padding-shift}), -100%);
+    transform: translate(calc(#{$arrow-shift} + #{$slider-padding}), -100%);
   }
 
   @include desktop {
     transform: translate($arrow-shift, -100%);
   }
 }
-
 
 @mixin slider-2pictures(
   $class,
@@ -156,6 +160,10 @@
     }
   }
 
+  .slider-#{$class} .slick-list {
+    overflow: visible;
+  }
+
   .slider-#{$class}--right {
     transform: translateX(calc(#{$slider-shift} - #{$slider-padding-mobile}));
 
@@ -183,10 +191,6 @@
     }
   }
 
-  .slider-#{$class} .slick-list {
-    overflow: visible;
-  }
-
   .slider-arrows__#{$class}--left {
     left: 0;
     @include arrow-position(false, false, $slider-padding-tablet);
@@ -195,7 +199,6 @@
   .slider-arrows__#{$class}--left.inverted {
     @include tablet {
       left: 100%;
-      // right: 0;
     }
     @include arrow-position(false, true, $slider-padding-tablet);
   }
@@ -211,24 +214,8 @@
     }
     @include arrow-position(true, true, $slider-padding-tablet);
   }
-
-  // .slider-arrows--left {
-  //   @if $inverted {
-  //     left: 100%;
-  //   } @else {
-  //     left: 0;
-  //   }
-  //   transform: translate(0, calc(-100% - 20px));
-  //   @include tablet {
-  //     left: 100%;
-  //     transform: translate(calc(-100% - #{$slider-padding-tablet}), -100%);
-  //   }
-  //   @include desktop {
-  //     transform: translate(-100%, -100%);
-  //   }
-  // }
-
 }
+
 //! ABOUT
 
 // .slider-about .slick-slide img {

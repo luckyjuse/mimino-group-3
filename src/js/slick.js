@@ -24,8 +24,8 @@ $('.double-room__slider').slick({
 $('.about-kitchen__slider').slick({
   arrows: true,
   slidesToShow: 2,
-  prevArrow: $('.about-prev'),
-  nextArrow: $('.about-next'),
+  prevArrow: $('.kitchen-prev'),
+  nextArrow: $('.kitchen-next'),
 });
 // $('.slider-about').slick({
 //   mobileFirst: true,
